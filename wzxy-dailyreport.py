@@ -57,13 +57,14 @@ class WoZaiXiaoYuanPuncher(utils.Data):
 
     def PunchIn(self):
         print("获取打卡列表中...")
+        raise IndexError("手动出错")
         url = "https://student.wozaixiaoyuan.com/heat/getTodayHeatList.json"
         self.header["Host"] = "student.wozaixiaoyuan.com"
         self.header["JWSESSION"] = self.jwsession
         self.session = requests.session()
         response = self.session.post(url=url, data=self.body, headers=self.header)
         res = json.loads(response.text)
-        print("拿到了res")
+        
         # 如果 jwsession 无效，则重新 登录 + 打卡
         if res["code"] == -10:
             print(res)
