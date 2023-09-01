@@ -63,6 +63,7 @@ class WoZaiXiaoYuanPuncher(utils.Data):
         self.session = requests.session()
         response = self.session.post(url=url, data=self.body, headers=self.header)
         res = json.loads(response.text)
+        print("拿到了res")
         # 如果 jwsession 无效，则重新 登录 + 打卡
         if res["code"] == -10:
             print(res)
